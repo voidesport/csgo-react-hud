@@ -102,9 +102,10 @@ $obs-font-size: 28px;
             }
         }
         .avatar {
+            display: flex;
+            align-items: flex-end;
             position: absolute;
-            width: $obs-avatar;
-            height: $obs-avatar;
+            height: 500px;
             bottom: -$obs-line-height;
             left: $obs-avatar-offset;
         }

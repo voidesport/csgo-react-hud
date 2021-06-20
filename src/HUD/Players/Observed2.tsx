@@ -1,10 +1,10 @@
 import React from "react";
-import { Player } from "csgogsi-socket";
+import {Player} from "csgogsi-socket";
 import Weapon from "../Weapon/Weapon";
 import Avatar from "./Avatar";
 import "./observed2.scss";
-import { ArmorHelmet, ArmorFull, HealthFull, Bullets } from '../../assets/Icons';
-import { Veto } from "../../api/interfaces";
+import {ArmorFull, ArmorHelmet, Bullets, HealthFull} from '../../assets/Icons';
+import {Veto} from "../../api/interfaces";
 
 export default class Observed extends React.Component<{ player: Player | null, veto: Veto | null, round: number }> {
 	getAdr = () => {
@@ -40,7 +40,7 @@ export default class Observed extends React.Component<{ player: Player | null, v
 							grenade.ammo_reserve === 2 ? <Weapon weapon={grenade.name} active={grenade.state === "active"} isGrenade /> : null }
 						</React.Fragment>)}
 					</div>
-					<Avatar steamid={player.steamid} height={180} width={180} showCam={true} slot={player.observer_slot} default={player.team.side}/>
+					<Avatar steamid={player.steamid} width={180} showCam={true} slot={player.observer_slot} default={player.team.side}/>
 					<div className="ammo">
 						<div className="ammo_icon_container">
 							<Bullets />

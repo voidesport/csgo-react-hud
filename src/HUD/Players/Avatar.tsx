@@ -36,7 +36,7 @@ export default class Avatar extends React.Component<IProps, IState> {
 
         return (      
           <div className={`avatar`}>
-            <img src={process.env.PUBLIC_URL + (this.props.default === 'T' ? '/t_silhouette.png' : '/ct_silhouette.png')} height={this.props.height} width={this.props.width} alt={'Avatar'} />
+            <img src={process.env.PUBLIC_URL + (this.props.default === 'T' ? '/t_silhouette.png' : '/ct_silhouette.png')} width={this.props.width} alt={'Avatar'} />
           </div>
         );
     }
