@@ -12,7 +12,8 @@ interface IProps {
   height?: number,
   width?: number,
   showSkull?: boolean,
-  showCam?: boolean
+  showCam?: boolean,
+  default?: string,
 }
 interface IState {
   enableCams: boolean
@@ -31,7 +32,13 @@ export default class Avatar extends React.Component<IProps, IState> {
     //const url = avatars.filter(avatar => avatar.steamid === this.props.steamid)[0];
     const avatarData = avatars[this.props.steamid];
     if(!avatarData || !avatarData.url){
-        return '';
+        if (!this.props.default) return '';
+
+        return (      
+          <div className={`avatar`}>
+            <img src={process.env.PUBLIC_URL + (this.props.default === 'T' ? '/t_silhouette.png' : '/ct_silhouette.png')} height={this.props.height} width={this.props.width} alt={'Avatar'} />
+          </div>
+        );
     }
     const slot = this.props.slot === 0 ? 10 : this.props.slot || 1;
     const leftPosition = - 150*((slot-1)%5);

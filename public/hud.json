@@ -1,12 +1,12 @@
 {
-    "name":"Lexogrine HUD",
-    "version":"2.0.1",
-    "author":"Lexogrine",
+    "name": "VOID HUD",
+    "version": "2.0.3",
+    "author": "VOID E-sport",
     "legacy": false,
     "radar": true,
     "killfeed": true,
-    "boltobserv":{
-        "css":true,
-        "maps":true
+    "boltobserv": {
+        "css": true,
+        "maps": true
     }
 }

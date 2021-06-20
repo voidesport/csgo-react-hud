@@ -27,8 +27,8 @@ export default class RadarMaps extends React.Component<Props, State> {
         const { match } = this.props;
         return (
             <div id={`radar_maps_container`} className={`${!this.state.showRadar ? 'hide':''}`}>
-                <Radar radarSize={this.state.radarSize} game={this.props.game}/>
                 {match ? <MapsBar match={this.props.match} map={this.props.map}  game={this.props.game}/>:null}
+                <Radar radarSize={this.state.radarSize} game={this.props.game}/>
             </div>
         );
     }
@@ -57,7 +57,7 @@ class MapEntry extends React.PureComponent<{veto: Veto, map: Map, team: Team | n
         const { veto, map, team } = this.props;
         return <div className="veto_entry">
             <div className="team_logo">{team ? <TeamLogo team={team} />: null}</div>
-            <div className={`map_name ${map.name.includes(veto.mapName) ? 'active':''}`}>{veto.mapName}</div>
+            <div className={`map_name ${map.name.includes(veto.mapName) ? 'active':''}`}>{veto.mapName.replace("de_", "")}</div>
         </div>
     }
 }

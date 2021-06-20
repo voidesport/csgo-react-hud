@@ -5,14 +5,24 @@
     flex-direction: column;
     opacity: 1;
     transition: opacity 0.75s;
-    &.CT {
+    &.left.CT {
         .player .hp_bar {
-            background-color: var(--color-new-ct);
+            background: linear-gradient(90deg, rgba(66, 83, 99, 1) 0%, rgba(41, 113, 159, 1) 47%, rgba(19, 149, 215, 1) 100%);
         }
     }
-    &.T {
+    &.right.CT {
         .player .hp_bar {
-            background-color: var(--color-new-t);
+            background: linear-gradient(270deg, rgba(66, 83, 99, 1) 0%, rgba(41, 113, 159, 1) 47%, rgba(19, 149, 215, 1) 100%);
+        }
+    }
+    &.left.T {
+        .player .hp_bar {
+            background: linear-gradient(270deg, rgba(184, 127, 4, 1) 0%, rgba(156, 107, 7, 1) 47%, rgba(110, 89, 36, 1) 100%);
+        }
+    }
+    &.right.T {
+        .player .hp_bar {
+            background: linear-gradient(90deg, rgba(184, 127, 4, 1) 0%, rgba(156, 107, 7, 1) 47%, rgba(110, 89, 36, 1) 100%);
         }
     }
     &.hide {
@@ -26,12 +36,8 @@
                 .grenades {
                     padding-right: 5px;
                 }
-                
                 .armor_and_utility {
                     justify-content: flex-start;
-                }
-                .money {
-                    margin-right: auto;
                 }
                 .username .roundkills-container {
                     right: 115px;
@@ -39,10 +45,10 @@
                 .secondary_weapon {
                     padding-right: 10px;
                 }
-                
-            }
-            .dead-stats {
-                right: 8px;
+                .stats {
+                    margin: 0 auto;
+                    margin-left: 50px;
+                }
             }
         }
     }
@@ -50,9 +56,7 @@
         right: 10px;
         .player {
             flex-direction: row-reverse;
-            .dead-stats {
-                left: 8px;
-            }
+            align-self: flex-end;
             .player_data {
                 flex-direction: row-reverse;
                 .hp_bar {
@@ -60,6 +64,10 @@
                 }
                 .row {
                     flex-direction: row-reverse;
+                    .stats {
+                        margin: 0 auto;
+                        margin-right: 50px;
+                    }
                     .grenades {
                         padding-left: 5px;
                     }
@@ -76,9 +84,8 @@
                         justify-content: flex-end;
                     }
                     .money {
-                        margin-left: auto;
                         justify-content: flex-end;
-                    } 
+                    }
                     .weapon {
                         transform: scaleX(-1);
                     }
@@ -88,7 +95,7 @@
                 }
             }
         }
-    }  
+    }
     .player {
         width: 645px;
         height: 70px;
@@ -103,15 +110,14 @@
         }
         &.dead {
             opacity: 0.7;
+            transition: width 0.5s;
+            width: 300px;
             .player_side_bar {
                 background-color: var(--main-panel-color) !important;
             }
             .player_data {
                 .avatar {
                     filter: grayscale(100%);
-                }
-                .dead-stats {
-                    display: flex;
                 }
                 .row {
                     .hp_background_2 {
@@ -134,6 +140,10 @@
                 }
             }
         }
+        &:first-child .player_data {
+            overflow: hidden;
+            border-radius: 20px 20px 0 0;
+        }
         &:last-child .player_data {
             border-radius: 0 0 20px 20px;
         }
@@ -145,28 +155,6 @@
             }
             &.T {
                 background-color: var(--color-new-t);
-            }
-        }
-        .dead-stats {
-            position: absolute;
-            height: 85%;
-            width: 60px;
-            display: none;
-            flex-direction: column;
-            font-weight: 600;
-            color: white;
-            opacity: 0.75;
-            top: 10%;
-            .labels, .values {
-                display: flex;
-                flex-direction: row;
-                flex: 1;
-                .stat-label, .stat-value {
-                    display: flex;
-                    flex: 1;
-                    align-items: center;
-                    justify-content: center;
-                }
             }
         }
         .player_data {
@@ -182,7 +170,8 @@
                 flex: 1;
                 min-width: 0;
                 .hp_bar {
-                    height: 2px;
+                    height: 100%;
+                    position: absolute;
                     &.low {
                         background-color: red;
                     }
@@ -197,7 +186,8 @@
                             filter: invert(0);
                         }
                     }
-                    .hp_background, .hp_background_2 {
+                    .hp_background,
+                    .hp_background_2 {
                         position: absolute;
                         width: 100%;
                         height: 100%;
@@ -213,7 +203,9 @@
                         align-items: center;
                         padding-left: 5px;
                         padding-right: 5px;
-                        .armor_indicator, .bomb_indicator, .defuse_indicator {
+                        .armor_indicator,
+                        .bomb_indicator,
+                        .defuse_indicator {
                             svg {
                                 max-height: 20px;
                                 fill: white;
@@ -248,7 +240,7 @@
                         }
                         div span {
                             opacity: 0.6;
-                            font-size:15px;
+                            font-size: 15px;
                         }
                         svg.weapon {
                             max-height: 30px;
@@ -267,6 +259,47 @@
                         align-items: center;
                         justify-content: flex-start;
                     }
+                    .stats {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        gap: 10px;
+                        .kill_or_death {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            color: var(--white-full);
+                            font-weight: 600;
+                            gap: 2px;
+                            width: 40px;
+                            svg {
+                                max-height: 12px;
+                                width: auto;
+                                fill: var(--white-full)
+                            }
+                        }
+                        .roundkill-container {
+                            position: absolute;
+                            width: 14px;
+                            height: 14px;
+                            border-radius: 50%;
+                            .roundkill {
+                                font-size: 11px;
+                                font-weight: 600;
+                                padding-left: 4px;
+                            }
+                            &.T {
+                                background-color: #f0c941;
+                                color: black;
+                                right: 252px;
+                            }
+                            &.CT {
+                                background-color: #5788a8;
+                                color: white;
+                                left: 140px;
+                            }
+                        }
+                    }
                     .grenades {
                         display: flex;
                         align-items: center;
@@ -284,7 +317,7 @@
                         z-index: 1;
                         color: white;
                         font-weight: 600;
-                        font-size:18px;
+                        font-size: 18px;
                     }
                     .secondary_weapon {
                         display: flex;
@@ -302,7 +335,7 @@
                 align-items: center;
                 justify-content: flex-end;
                 img {
-                    border-radius:50%;
+                    border-radius: 50%;
                 }
             }
         }
@@ -313,7 +346,7 @@
     display: flex;
     flex-direction: column;
     width: 180px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     right: 10px;
     top: 10px;
@@ -321,36 +354,38 @@
     transition: opacity 1s;
     .counter_container {
         display: flex;
-        height: 45px;
-        > div {
+        height: 30px;
+        >div {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size:30px;
+            font-size: 20px;
             color: white;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.8);
         }
         .team_counter {
-            background-color: rgba(0,0,0,0.75);
+            background-color: rgba(0, 0, 0, 0.75);
         }
         .CT {
-            color: var(--color-new-ct);
+            color: var(white);
+            background: linear-gradient(90deg, rgba(66, 83, 99, 1) 0%, rgba(41, 113, 159, 1) 47%, rgba(19, 149, 215, 1) 100%);
         }
         .T {
-            color: var(--color-new-t);
+            color: var(white);
+            background: linear-gradient(90deg, rgba(184, 127, 4, 1) 0%, rgba(156, 107, 7, 1) 47%, rgba(110, 89, 36, 1) 100%);
         }
     }
     .title_container {
         color: white;
         text-transform: uppercase;
         text-align: center;
-        height:20px;
-        font-size:14px;
+        height: 20px;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(0,0,0,0.75);
+        background-color: rgba(0, 0, 0, 0.75);
     }
     &.hide {
         opacity: 0;

@@ -2,7 +2,7 @@ import React from "react";
 import TeamBox from "./../Players/TeamBox";
 import MatchBar from "../MatchBar/MatchBar";
 import SeriesBox from "../MatchBar/SeriesBox";
-import Observed from "./../Players/Observed";
+import Observed2 from "./../Players/Observed2";
 import { CSGO, Team } from "csgogsi-socket";
 import { Match } from "../../api/interfaces";
 import RadarMaps from "./../Radar/RadarMaps";
@@ -78,7 +78,7 @@ export default class Layout extends React.Component<Props, State> {
 
     return (
       <div className="layout">
-        <div className={`players_alive`}>
+        <div className={`players_alive ${isFreezetime ? 'hide': 'show'}`}>
           <div className="title_container">Players alive</div>
           <div className="counter_container">
             <div className={`team_counter ${left.side}`}>{leftPlayers.filter(player => player.state.health > 0).length}</div>
@@ -96,7 +96,7 @@ export default class Layout extends React.Component<Props, State> {
 
         <Tournament />
 
-        <Observed player={game.player} veto={this.getVeto()} round={game.map.round+1}/>
+        <Observed2 player={game.player} veto={this.getVeto()} round={game.map.round+1}/>
 
         <TeamBox team={left} players={leftPlayers} side="left" current={game.player} isFreezetime={isFreezetime} />
         <TeamBox team={right} players={rightPlayers} side="right" current={game.player} isFreezetime={isFreezetime} />
