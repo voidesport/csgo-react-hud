@@ -2,16 +2,16 @@ $obs-width: 580px;
 $obs-height: 90px;
 $obs-avatar: 180px;
 $obs-line-height: $obs-height / 2;
-$obs-side-width: ($obs-width - $obs-avatar) / 2;
+$obs-side-width: (($obs-width - $obs-avatar) / 2);
 $obs-avatar-offset: ($obs-width / 2) - ($obs-avatar / 2);
-$obs-font-size: 28px;
+$obs-font-size: 24px;
 .observed2 {
     position: fixed;
     width: $obs-width;
-    bottom: 120px;
+    bottom: 80px;
     margin-left: -$obs-width / 2;
     left: 50%;
-    height: $obs-line-height;
+    height: $obs-height;
     display: flex;
     flex-direction: column;
     color: white;
@@ -44,7 +44,8 @@ $obs-font-size: 28px;
                 line-height: $obs-line-height;
                 vertical-align: top;
                 text-align: right;
-            }
+                white-space: nowrap;
+                overflow: hidden;            }
         }
         .whitespace {
             width: $obs-avatar;
@@ -53,7 +54,7 @@ $obs-font-size: 28px;
             height: 100%;
             display: flex;
             align-items: center;
-            width: $obs-side-width - 15px;
+            width: $obs-side-width - 40px;
             justify-content: flex-start;
             font-size: 0.7em;
             .health {
@@ -106,14 +107,14 @@ $obs-font-size: 28px;
             align-items: flex-end;
             position: absolute;
             height: 500px;
-            bottom: -$obs-line-height;
+            bottom: 0;
             left: $obs-avatar-offset;
         }
         .ammo_icon_container {
             height: 100%;
             display: flex;
             align-items: center;
-            width: $obs-side-width - 15px;
+            width: $obs-side-width - 40px;
             justify-content: flex-start;
             svg {
                 max-height: $obs-line-height;
